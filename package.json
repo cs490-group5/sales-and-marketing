@@ -1,0 +1,29 @@
+{
+  "name": "sales-and-marketing",
+  "version": "1.0.0",
+  "description": "A system architecture solution for a Sales and Marketing system for Recreation USA",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cs490-group5/sales-and-marketing.git"
+  },
+  "keywords": [
+    "cs490",
+    "sales",
+    "marketing"
+  ],
+  "author": "Group5",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cs490-group5/sales-and-marketing/issues"
+  },
+  "homepage": "https://github.com/cs490-group5/sales-and-marketing#readme",
+  "devDependencies": {
+    "koa": "^1.2.5",
+    "lodash": "^4.17.4"
+  }
+}
