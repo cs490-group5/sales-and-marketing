@@ -1,14 +1,33 @@
 'use strict';
+const koa = require('koa');
+const views = require('koa-views');
+const serve = require('koa-static');
+const mount = require('koa-mount');
+const path = require('path');
+const config = require('./config');
 
-const db = require('./db/data-service');
+const app = new koa();
 
-// an example of getting a mock data item and logging it.
-const params = {
-  database: 'Analytics',
-  table: 'table1',
-  id: 2
-};
+app.use(views('./views', {
+  map: {
+    html: 'ejs'
+  }
+}));
 
-db.getItem(params).then(function(item) {
-  console.log(item);
-});
+// add all the available portals here
+// e.g. require('./views/client')
+// and then add routes (GET, POST, etc.) to your portal
+// see 'views/marketing/index.js' router.get()
+const routers = [
+  require('./views/marketing')
+];
+
+routers.forEach((router) =>
+  app.use(router.routes())
+    .use(router.allowedMethods())
+);
+
+app.use(mount('/assets', serve(path.resolve(__dirname, 'assets'))));
+
+app.listen(config.port);
+console.log('Listening on port', config.port);
