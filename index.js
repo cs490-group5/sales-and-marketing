@@ -19,7 +19,9 @@ app.use(views('./views', {
 // and then add routes (GET, POST, etc.) to your portal
 // see 'views/marketing/index.js' router.get()
 const routers = [
-  require('./views/marketing')
+  require('./views/marketing'),
+  require('./views/services'),
+  require('./views/sales-trend-forecasting')
 ];
 
 routers.forEach((router) =>
