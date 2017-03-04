@@ -5,15 +5,13 @@ const db = require('../../db/data-service');
 router.get('/marketing', function*() {
   // an example of getting a mock data item and logging it.
   const params = {
-    database: 'Analytics',
-    table: 'table1',
-    id: 2
+    database: 'Marketing',
+    table: 'sales'
   };
 
-
-  const item = yield db.getItem(params);
-  console.log(item);
-  yield this.render('./marketing/index', {params: params, item: item});
+  const response = yield db.scan(params);
+  console.log(response);
+  yield this.render('./marketing/index', {params: params, response: response});
 });
 
 module.exports = router;
