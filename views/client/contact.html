@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="style.css">
+		<link rel="import" href="/assets/head-bootstrap.html">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
 		<script src="https://use.fontawesome.com/f4df917d00.js"></script>
 	</head>
@@ -28,22 +29,31 @@
 		</nav>
 		<main>
 			<section class="cwidth">
-				<div class="placeholder"></div>
-				<div class="sectionhead">1 result for "lorem ipsum"</div>
-				<div class="prodct">
-					<a href="product-bike.html" class="prodthumb"><img src="imgs/bike1.jpg"></a>
-					<a href="product-bike.html" class="prodname">2016 Cool Bike</a>
-					<div class="prodrating">
-						<i class="fa fa-star star"></i>
-						<i class="fa fa-star star"></i>
-						<i class="fa fa-star star"></i>
-						<i class="fa fa-star star"></i>
-						<i class="fa fa-star-o star"></i>
+				<form id="ctform">
+					<div class="form-group">
+						<span class="form-label">Name</span><br>
+						<input type="text">
 					</div>
-				</div>
-				<div class="clear"></div>
+					<br>
+					<div class="form-group">
+						<span class="form-label">Email</span><br>
+						<input type="text">
+					</div>
+					<br>
+					<div class="form-group">
+						<span class="form-label">Message</span><br>
+						<textarea></textarea>
+					</div>
+					<br><br>
+					<button onclick="submitform();">Submit</button>
+				</form>
 			</section>
-
 		</main>
+		<script type="text/javascript">
+			function submitform(){
+				var ctform = document.getElementById("ctform");
+				ctform.innerHTML = "Your ticket has been submitted. We will be in touch shortly!";
+			}
+		</script>
 	</body>
 </html>
