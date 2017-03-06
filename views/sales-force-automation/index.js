@@ -10,7 +10,6 @@ router.get('/sales-force-automation', function*() {
   };
 
   const response = yield db.scan(params);
-  console.log(response);
   yield this.render('./sales-force-automation/index', {params: params, response: response});
 });
 

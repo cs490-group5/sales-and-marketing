@@ -10,7 +10,6 @@ router.get('/sales-trend-forecasting', function*() {
   };
 
   const response = yield db.scan(params);
-  console.log(response);
   yield this.render('./sales-trend-forecasting/index', {params: params, response: response});
 });
 

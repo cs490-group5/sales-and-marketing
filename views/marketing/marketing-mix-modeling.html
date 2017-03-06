@@ -1,0 +1,356 @@
+<html>
+  <head>
+    <title>Marketing Portal</title>
+    <link rel="import" href="/assets/head-bootstrap.html">
+    <script src="/assets/chart.js"></script>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Marketing Portal</h1>
+        <h3>Marketing Mix Modeling</h3>
+      </div>
+    </div>
+
+    <div class="container">
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a data-toggle="tab" href="#historyTab">Historical Data</a></li>
+        <li role="presentation"><a data-toggle="tab" href="#modelingTab">Modeling</a></li>
+      </ul>
+      <br>
+      <div class="tab-content">
+        <div id="historyTab" class="tab-pane fade in active">
+          <canvas id="salesByItem" width="300" height="300" style="display: inline-block"></canvas>
+          <canvas id="salesByChannel" width="300" height="300" style="display: inline-block"></canvas>
+          <canvas id="salesByPromotion" width="300" height="300" style="display: inline-block"></canvas>
+        </div>
+        <div id="modelingTab" class="tab-pane fade">
+          <div class="input-group">
+            <label for="promotion1">TV ads</label>
+            <input id="promotion1" type="text" class="form-control" placeholder="TV ads" value="<%- promotions[0].spending %>">
+          </div>
+          <div class="input-group">
+            <label for="promotion1">Radio</label>
+            <input id="promotion2" type="text" class="form-control" placeholder="Radio" value="<%- promotions[1].spending %>">
+          </div>
+          <div class="input-group">
+            <label for="promotion1">Web ads</label>
+            <input id="promotion3" type="text" class="form-control" placeholder="Web ads" value="<%- promotions[2].spending %>">
+          </div>
+          <div class="input-group">
+            <label for="promotion1">Newspaper</label>
+            <input id="promotion4" ype="text" class="form-control" placeholder="Newspaper" value="<%- promotions[3].spending %>">
+          </div>
+          <div class="input-group">
+            <label for="promotion1">Social Media</label>
+            <input id="promotion5" type="text" class="form-control" placeholder="Social Media" value="<%- promotions[4].spending %>">
+          </div>
+
+          <canvas id="salesByItemForecast" width="300" height="300" style="display: inline-block"></canvas>
+          <canvas id="salesByChannelForecast" width="300" height="300" style="display: inline-block"></canvas>
+          <canvas id="salesByPromotionForecast" width="300" height="300" style="display: inline-block"></canvas>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    var salesByItem = $("#salesByItem");
+    var salesByItemChart = new Chart(salesByItem, {
+      type: 'bar',
+      data: {
+        labels: ['Enduro 250', 'Enduro 550'],
+        datasets: [{
+          label: '# of Sales',
+          data: [<%- historyCharts.salesByItem %>],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Sales by Item Type'
+        },
+        responsive: false,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
+
+    var salesByChannel = $("#salesByChannel");
+    var salesByChannelChart = new Chart(salesByChannel, {
+      type: 'bar',
+      data: {
+        labels: ['Retail', 'Authorized dealer', 'Independent dealer'],
+        datasets: [{
+          label: '# of Sales',
+          data: [<%- historyCharts.salesByChannel %>],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Sales by Distribution Channel'
+        },
+        responsive: false,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
+
+    var salesByPromotion = $("#salesByPromotion");
+    var salesByPromotionChart = new Chart(salesByPromotion, {
+      type: 'bar',
+      data: {
+        labels: ['TV ads', 'Radio', 'Web ads', 'Newspaper', 'Social Media'],
+        datasets: [{
+          label: '# of Sales',
+          data: [<%- historyCharts.salesByPromotion %>],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Sales by Item Type'
+        },
+        responsive: false,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
+
+    // --------------- Marketin Mix Modeling Charts ------------
+
+    var salesByItemForecast = $("#salesByItemForecast");
+    var salesByItemForecastChart = new Chart(salesByItemForecast, {
+      type: 'bar',
+      data: {
+        labels: ['Enduro 250', 'Enduro 550'],
+        datasets: [{
+          label: '# of Sales',
+          data: [<%- historyCharts.salesByItem %>],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Forecasted Sales by Item Type'
+        },
+        responsive: false,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
+
+    var salesByChannelForecast = $("#salesByChannelForecast");
+    var salesByChannelForecastChart = new Chart(salesByChannelForecast, {
+      type: 'bar',
+      data: {
+        labels: ['Retail', 'Authorized dealer', 'Independent dealer'],
+        datasets: [{
+          label: '# of Sales',
+          data: [<%- historyCharts.salesByChannel %>],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Forecasted Sales by Distribution Channel'
+        },
+        responsive: false,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
+
+    var salesByPromotionForecast = $("#salesByPromotionForecast");
+    var salesByPromotionForecastChart = new Chart(salesByPromotionForecast, {
+      type: 'bar',
+      data: {
+        labels: ['TV ads', 'Radio', 'Web ads', 'Newspaper', 'Social Media'],
+        datasets: [{
+          label: '# of Sales',
+          data: [<%- historyCharts.salesByPromotion %>],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Forecasted Sales by Item Type'
+        },
+        responsive: false,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
+
+    var promotionsSpending = [
+      $('#promotion1'),
+      $('#promotion2'),
+      $('#promotion3'),
+      $('#promotion4'),
+      $('#promotion5'),
+    ];
+
+    var marketingMixModel = JSON.parse('<%-JSON.stringify(model)%>');
+
+    // update forecast charts data when spendings change
+    promotionsSpending.forEach(function(promotionSpending) {
+      promotionSpending.change(function() {
+        for (var i = 0; i < marketingMixModel.salesPerPromotionByItem.length; i++) {
+          var forecastedSales = 0;
+          for (var j = 0; j < promotionsSpending.length; j++) {
+            forecastedSales += parseInt(promotionsSpending[j].val(), 10) * marketingMixModel.salesPerPromotionByItem[i][j];
+          }
+          salesByItemForecastChart.data.datasets[0].data[i] = forecastedSales;
+        }
+        salesByItemForecastChart.update();
+
+        for (var i = 0; i < marketingMixModel.salesPerPromotionByChannel.length; i++) {
+          var forecastedSales = 0;
+          for (var j = 0; j < promotionsSpending.length; j++) {
+            forecastedSales += parseInt(promotionsSpending[j].val(), 10) * marketingMixModel.salesPerPromotionByChannel[i][j];
+          }
+          salesByChannelForecastChart.data.datasets[0].data[i] = forecastedSales;
+        }
+        salesByChannelForecastChart.update();
+
+        for (var i = 0; i < promotionsSpending.length; i++) {
+          var forecastedSales = parseInt(promotionsSpending[i].val(), 10) * marketingMixModel.salesPerPromotionByPromotion[i];
+          salesByPromotionForecastChart.data.datasets[0].data[i] = forecastedSales;
+        }
+        salesByPromotionForecastChart.update();
+      });
+    });
+  </script>
+</html>
