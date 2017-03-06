@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<link rel="import" href="/assets/head-bootstrap.html">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
+		<script src="https://use.fontawesome.com/f4df917d00.js"></script>
+	</head>
+
+	<body>
+		<header>
+			<a href="index.html" id="logo">RECREATION USA</a>
+			<div id="searchform">
+				<form action="search.html">
+					<button  type="submit"><i class="fa fa-search fa-lg"></i></button>
+					<div id="searchinp"><input type="text" /></div>
+					<div class="clear"></div>
+				</form>
+			</div>
+			<div id="subhead">
+				<a id="cart" href="checkout.html">1 item <i class="fa fa-shopping-cart fa-2x"></i></a>
+			</div>
+		</header>
+		<nav>
+			<div id="navinner" class="cwidth">
+				<a href="index.html" class="navitem">Home</a>
+				<a href="products.html" class="navitem">Products</a>
+				<a href="contact.html" class="navitem">Contact</a>
+			</div>
+		</nav>
+		<main>
+			<section class="cwidth">
+				<form id="ctform">
+					<div class="form-group">
+						<span class="form-label">Name</span><br>
+						<input type="text">
+					</div>
+					<br>
+					<div class="form-group">
+						<span class="form-label">Email</span><br>
+						<input type="text">
+					</div>
+					<br>
+					<div class="form-group">
+						<span class="form-label">Message</span><br>
+						<textarea></textarea>
+					</div>
+					<br><br>
+					<button onclick="submitform();">Submit</button>
+				</form>
+			</section>
+		</main>
+		<script type="text/javascript">
+			function submitform(){
+				var ctform = document.getElementById("ctform");
+				ctform.innerHTML = "Your ticket has been submitted. We will be in touch shortly!";
+			}
+		</script>
+	</body>
+</html>
