@@ -1,0 +1,15 @@
+.jumbotron {
+  background: #d9edf7; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #57b4c8, #d9edf7); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #57b4c8, #d9edf7); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #57b4c8, #d9edf7); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #57b4c8, #d9edf7); /* Standard syntax */
+}
+
+/*body {
+  background: #ddd;
+  background: -webkit-linear-gradient(#bbb, #fff);
+  background: -o-linear-gradient(#bbb, #fff);
+  background: -moz-linear-gradient(#bbb, #fff);
+  background: linear-gradient(#bbb, #fff);
+}*/
