@@ -37,18 +37,18 @@ const mockOrdersData = [
     id: 1,
     user_id: 1,
     product_id: 1,
-    salesperson_id: 1
+    salesperson_id: 1,
     quantity: 10
   },  {
     id: 2,
     user_id: 3,
     product_id: 2,
-    salesperson_id: 1
+    salesperson_id: 1,
     quantity: 15
   },
 ];
 
-const mockSalesPeopleData = {
+const mockSalesPeopleData = [
   {
     id: 1,
     name: "Jonah Glover",
@@ -62,7 +62,7 @@ const mockSalesPeopleData = {
     name: "Malpa Hetel",
     skill: "First Contact"
   },
-};
+];
 
 const mockSupportTicketData = [
   {

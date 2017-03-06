@@ -11,8 +11,7 @@ module.exports = {
       user_id: 2,
       description: "Can't figure out how to order through the website.",
       salesperson_id: 1
-    }
-    {
+    }, {
       id: 3,
       user_id: 3,
       description: "Chain fell off. How can I put it back on?",

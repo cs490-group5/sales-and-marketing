@@ -88,7 +88,10 @@
   <div class="tab">
     <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'outstanding_tickets')" id="defaultOpen">Help Desk Tickets</a>
     <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'orders')">Orders</a>
-    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'sales_people')">Sales People</a>    
+    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'sales_people')">Sales People</a>
+    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'leads')">Leads</a>    
+    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'new_ticket')">New Ticket</a>    
+    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'new_lead')">New Lead</a>    
   </div>
 
   <div id="outstanding_tickets" class="tabcontent">
@@ -200,6 +203,57 @@
     </div>
   </div>
 
+  <div id="leads" class="tabcontent">
+    <h3 style="border-bottom: black 1px solid;">Leads</h3>
+    <div class="ticket__list">
+      <div id="lead1" class="ticket__container">
+        <div class="ticket__name">
+          <span class="bold">Name: </span>Oliver Q.
+        </div>
+        <div class="ticket__description">
+          <span class="bold">Phone Number: </span>(416) 556 - 3334
+        </div>
+        <div class="ticket__description">
+          Inbound lead. Called interested in orange bikes.
+        </div>
+      </div>
+      <br />
+    </div>
+  </div>
+
+  <div id="new_ticket" class="tabcontent">
+    <h3 style="border-bottom: black 1px solid;">New Order</h3>
+    <div class="ticket__list">
+      <div class="ticket__container">
+        <div class="ticket__description">
+          <span class="bold">Customer ID: </span><input />
+        </div>
+        <div class="ticket__description">
+          <span class="bold">Product ID: </span><input />
+        </div>
+        <div class="ticket__description">
+          <span class="bold">Quantity: </span><input />
+        </div>
+      </div>
+      <br />
+    </div>
+  </div>
+
+
+  <div id="new_lead" class="tabcontent">
+    <h3 style="border-bottom: black 1px solid;">New Lead</h3>
+    <div class="ticket__list">
+      <div class="ticket__container">
+        <div class="ticket__description">
+          <span class="bold">Phone Number: </span><input />
+        </div>
+        <div class="ticket__description">
+          <span class="bold">Description: </span><textarea></textarea>
+        </div>
+      </div>
+      <br />
+    </div>
+  </div>
 
 <script>
 function openCity(evt, cityName) {
