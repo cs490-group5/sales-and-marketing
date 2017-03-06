@@ -7,7 +7,7 @@ const body = require('koa-body')();
 const secretKey = 'm1chael';
 
 function auth(parent) {
-  if (!parent.request.query || (parent.request.query.secretKey !== secretKey)) {
+  if (!parent.request.query || (parent.request.query.key !== secretKey)) {
     parent.body = 'Error: incorrect secret key';
     parent.status = 401;
     return false;
