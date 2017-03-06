@@ -1,0 +1,255 @@
+<html>
+<style>
+body {font-family: "Lato", sans-serif;}
+
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the links inside the tab */
+div.tab a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+div.tab a:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+div.tab a:focus, .active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 3px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+.topright:hover {color: red;}
+</style>
+
+  <head>
+    <title>Web Analytics</title>
+    <link rel="import" href="/assets/head-bootstrap.html">
+    <!-- <script src="/assets/head-bootstrap.html"></script> -->
+  </head>
+  <body>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Website Analytics</h1>
+        <p>Metrics to understand your website visitors.</p>
+      </div>
+    </div>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<div class="tab">
+  <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Website Visitors')" id="defaultOpen">Website Visitors</a>
+  <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Bounceback Rate')">Bounceback Rate</a>
+  <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Visitor Information')">Visitor Information</a>
+</div>
+
+<div id="Website Visitors" class="tabcontent">
+  <h3>Website Visitors</h3>
+  <div id="mychart" style="width:100%; height: 55%; margin: 0 auto"></div>
+  <h3 align=center>Monthly Visitors: 1931<h1>
+  <h3 align=center>Visitors Today: 42<h1>
+</div>
+
+<div id="Bounceback Rate" class="tabcontent">
+  <h3>Bounceback Rate</h3>
+  <div id="enduro-250" style="width:100%; height: 55%; margin: 0 auto"></div>
+</div>
+
+<div id="Visitor Information" class="tabcontent">
+  <h3>Visitor Information</h3>
+  <div id="moto-450" style="width:100%; height: 55%; margin: 0 auto"></div>
+</div>
+
+<script>
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
+
+<script>
+$(function () {
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'mychart'
+            },
+            title: {
+                text: 'Website Visitors By Year',
+                x: -20 //center
+            },
+            subtitle: {
+                text: 'Total Visitors By Year',
+                x: -20
+            },
+            xAxis: {
+                allowDecimals: false,
+                labels: {
+                    formatter: function() {
+                       return this.value;
+                    }
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Website Visits (000s)'
+                },
+                min: 70
+            },
+            plotOptions: {
+                series: {
+                	pointStart: 2012,
+		}
+            },
+            series: [{
+                name: 'Current',
+                type: 'spline',
+                color: '#4572A7',
+                data: [6251,7483,9165,9778,9292,13000]
+            }]
+        });
+    });
+    
+});
+</script>
+<script>
+$(function () {
+    var chart2;
+    $(document).ready(function() {
+        chart2 = new Highcharts.Chart({
+            chart: {
+                renderTo: 'enduro-250'
+            },
+            title: {
+                text: 'Bounceback Rate By Year',
+                x: -20 //center
+            },
+            subtitle: {
+                text: 'Visitors Who Leave Within 5 Seconds Of Visit',
+                x: -20
+            },
+            xAxis: {
+                allowDecimals: false,
+                labels: {
+                    formatter: function() {
+                       return this.value;
+                    }
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Percent of Visitors'
+                },
+                min: 5
+            },
+            plotOptions: {
+                series: {
+                        pointStart: 2012,
+                }
+            },
+            series: [{
+                name: 'Current',
+                type: 'areaspline',
+                color: '#f44248',
+                data: [80,70,50,60,30,35]
+            }]
+        });
+    });
+
+});
+</script>
+<script>
+$(function () {
+    var chart3;
+    $(document).ready(function() {
+        chart3 = new Highcharts.chart({
+    	  chart: {
+	  renderTo: 'moto-450'
+    },
+    title: {
+        text: 'Visitor Geographic Profiles (January, 2017 to March, 2017)'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+	type: 'pie',
+        colorByPoint: true,
+        data: [{
+            name: 'Waterloo, ON',
+            y: 56.33,
+            sliced: true,
+            selected: true
+
+        }, {
+            name: 'Toronto, ON',
+            y: 24.03,
+        }, {
+            name: 'Montreal, QC',
+            y: 10.38,
+        }, {
+            name: 'Seattle, WA',
+            y: 4.77,
+        }, {
+            name: 'Portland, OR',
+            y: 0.91,
+        }, {
+            name: 'Mexico City, Mexico',
+            y: 0.2,
+         }]
+       }]
+    });   
+  });
+});
+</script>
+
+    </div>
+  </body>
+</html>
