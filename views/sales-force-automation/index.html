@@ -1,0 +1,148 @@
+<html>
+<style>
+  body {
+    font-family: "Lato", sans-serif;
+  }
+  
+  div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+  }
+  /* Style the links inside the tab */
+  
+  div.tab a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+  /* Change background color of links on hover */
+  
+  div.tab a:hover {
+    background-color: #ddd;
+  }
+  /* Create an active/current tablink class */
+  
+  div.tab a:focus,
+  .active {
+    background-color: #ccc;
+  }
+  /* Style the tab content */
+  
+  .tabcontent {
+    display: none;
+    padding: 3px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+  
+  .topright:hover {
+    color: red;
+  }
+
+  .ticket__list {
+
+  }
+
+  .ticket__container {
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+  }
+
+  .ticket__name {
+
+  }
+
+  .ticket__description {
+
+  }
+
+</style>
+
+<head>
+  <title>Sales Force Automation</title>
+  <link rel="import" href="/assets/head-bootstrap.html">
+  <!-- <script src="/assets/head-bootstrap.html"></script> -->
+</head>
+
+<body>
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Sales Force Automation</h1>
+      <p></p>
+    </div>
+  </div>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+  <div class="tab">
+    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'outstanding_tickets')" id="defaultOpen">Total Sales</a>
+    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Enduro-250')">Enduro-250</a>
+    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Moto-450')">Moto-450</a>
+  </div>
+
+  <div id="outstanding_tickets" class="tabcontent">
+    <h3 style="border-bottom: black 1px solid;">Outstanding Tickets</h3>
+    <div class="ticket__list">
+      <div id="ticket1" class="ticket__container">
+        <div class="ticket__name">
+          Maxwell House
+        </div>
+        <div class="ticket__description">
+          The pedals won't work properly. Need a replacement
+        </div>
+      </div>
+      <br />
+      <div id="ticket2" class="ticket__container">
+        <div class="ticket__name">
+          Wayne Lovett
+        </div>
+        <div class="ticket__description">
+          Can't figure out how to order through the website.
+        </div>
+      </div>
+      <br />
+      <div id="ticket3" class="ticket__container">
+        <div class="ticket__name">
+          Pemal Hatel
+        </div>
+        <div class="ticket__description">
+          Chain fell off. How can I put it back on?
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="Enduro-250" class="tabcontent">
+    <h3>Enduro-250</h3>
+  </div>
+
+<script>
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
+
+</body>
+
+</html>

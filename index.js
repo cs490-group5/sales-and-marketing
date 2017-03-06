@@ -21,7 +21,8 @@ app.use(views('./views', {
 const routers = [
   require('./views/marketing'),
   require('./views/services'),
-  require('./views/sales-trend-forecasting')
+  require('./views/sales-trend-forecasting'),
+  require('./views/sales-force-automation')
 ];
 
 routers.forEach((router) =>
