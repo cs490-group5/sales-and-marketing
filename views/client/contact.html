@@ -32,26 +32,45 @@
 				<form id="ctform">
 					<div class="form-group">
 						<span class="form-label">Name</span><br>
-						<input type="text">
+						<input type="text" id="name">
 					</div>
 					<br>
 					<div class="form-group">
 						<span class="form-label">Email</span><br>
-						<input type="text">
+						<input type="text" id="email">
 					</div>
 					<br>
 					<div class="form-group">
 						<span class="form-label">Message</span><br>
-						<textarea></textarea>
+						<textarea id="message"></textarea>
 					</div>
 					<br><br>
 					<button onclick="submitform();">Submit</button>
 				</form>
 			</section>
 		</main>
+		<script type="text/javascript" src="../../db/mock-data-service.js"></script>
 		<script type="text/javascript">
 			function submitform(){
 				var ctform = document.getElementById("ctform");
+
+				var ticket = {
+					id: 1,
+					user_id: 1,
+					description: document.getElementById("message").value,
+					salesperson_id: 1
+				}
+
+				var params = {
+					database: "Support",
+					table: "item", 
+					item: ticket
+				}
+
+				putItem(params, function(e){
+					console.log(e);
+				});
+
 				ctform.innerHTML = "Your ticket has been submitted. We will be in touch shortly!";
 			}
 		</script>
