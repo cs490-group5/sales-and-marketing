@@ -32,17 +32,57 @@ const mockWebAnalyticsData = {
 
 const mockMarketingData = require('./mock-marketing-data');
 
-const mockOrdersData = {
-  // to be added...
-};
+const mockOrdersData = [
+  {
+    id: 1,
+    user_id: 1,
+    product_id: 1,
+    salesperson_id: 1
+    quantity: 10
+  },  {
+    id: 2,
+    user_id: 3,
+    product_id: 2,
+    salesperson_id: 1
+    quantity: 15
+  },
+];
 
 const mockSalesPeopleData = {
-  // to be added...
+  {
+    id: 1,
+    name: "Jonah Glover",
+    skill: "Closing"
+  },  {
+    id: 2,
+    name: "Foo Bar",
+    skill: "Help Desk"
+  },  {
+    id: 3,
+    name: "Malpa Hetel",
+    skill: "First Contact"
+  },
 };
 
-const mockSupportTicketData = {
-  // to be added...
-};
+const mockSupportTicketData = [
+  {
+    id: 1,
+    user_id: 1,
+    description: "The pedals won't work properly. Need a replacement",
+    salesperson_id: 1
+  }, {
+    id: 2,
+    user_id: 2,
+    description: "Can't figure out how to order through the website.",
+    salesperson_id: 1
+  },
+  {
+    id: 3,
+    user_id: 3,
+    description: "Chain fell off. How can I put it back on?",
+    salesperson_id: 1
+  }
+];
 
 const mockData = {
   Marketing: mockMarketingData,

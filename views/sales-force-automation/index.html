@@ -62,6 +62,10 @@
 
   }
 
+  .bold {
+    font-weight: bold;
+  }
+
 </style>
 
 <head>
@@ -82,9 +86,9 @@
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
   <div class="tab">
-    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'outstanding_tickets')" id="defaultOpen">Total Sales</a>
-    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Enduro-250')">Enduro-250</a>
-    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Moto-450')">Moto-450</a>
+    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'outstanding_tickets')" id="defaultOpen">Help Desk Tickets</a>
+    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'orders')">Orders</a>
+    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'sales_people')">Sales People</a>    
   </div>
 
   <div id="outstanding_tickets" class="tabcontent">
@@ -119,9 +123,83 @@
     </div>
   </div>
 
-  <div id="Enduro-250" class="tabcontent">
-    <h3>Enduro-250</h3>
+  <div id="orders" class="tabcontent">
+    <h3 style="border-bottom: black 1px solid;">Orders</h3>
+    <div class="ticket__list">
+      <div id="order1" class="ticket__container">
+        <div class="ticket__name">
+          <span class="bold">Customer Name: </span>Maxwell House
+        </div>
+        <div class="ticket__description">
+          <span class="bold">Product Name: </span>Enduro-250
+        </div>
+        <div class="ticket__description">
+          <span class="bold">Quantity: </span>10
+        </div>
+        <div class="ticket__description">
+          <span class="bold">Total Price: </span>$10,000
+        </div>
+      </div>
+      <br />
+      <div id="order2" class="ticket__container">
+        <div class="ticket__name">
+          <span class="bold">Customer Name: </span>Pemal Hatel
+        </div>
+        <div class="ticket__description">
+          <span class="bold">Product Name: </span>Moto-450
+        </div>
+        <div class="ticket__description">
+          <span class="bold">Quantity: </span>15
+        </div>
+        <div class="ticket__description">
+          <span class="bold">Total Price: </span>$15,000
+        </div>
+      </div>
+    </div>
   </div>
+
+  <div id="sales_people" class="tabcontent">
+    <h3 style="border-bottom: black 1px solid;">Sales People</h3>
+    <div class="ticket__list">
+      <div id="person1" class="ticket__container">
+        <div class="ticket__name">
+          <span class="bold">Name: </span>Jonah Glover
+        </div>
+        <div class="ticket__description">
+          <span class="bold">ID: </span>1
+        </div>
+        <div class="ticket__description">
+          <span class="bold">Skill: </span>Closing
+        </div>
+      </div>
+      <br />
+      <div id="person1" class="ticket__container">
+        <div class="ticket__name">
+          <span class="bold">Name: </span>Foo Bar
+        </div>
+        <div class="ticket__description">
+          <span class="bold">ID: </span>2
+        </div>
+        <div class="ticket__description">
+          <span class="bold">Skill: </span>Help Desk
+        </div>
+      </div>
+      <br />
+      <div id="person1" class="ticket__container">
+        <div class="ticket__name">
+          <span class="bold">Name: </span>Mapla Hetel
+        </div>
+        <div class="ticket__description">
+          <span class="bold">ID: </span>3
+        </div>
+        <div class="ticket__description">
+          <span class="bold">Skill: </span>First Contact
+        </div>
+      </div>
+      <br />
+    </div>
+  </div>
+
 
 <script>
 function openCity(evt, cityName) {
