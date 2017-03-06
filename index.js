@@ -24,7 +24,8 @@ const routers = [
   require('./views/client'),
   require('./views/sales-trend-forecasting'),
   require('./views/sales-force-automation'),
-  require('./api')
+  require('./api'),
+  require('./views/web-analytics')
 ];
 
 routers.forEach((router) =>
