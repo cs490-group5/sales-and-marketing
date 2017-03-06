@@ -7,6 +7,18 @@ const db = require('./mock-data-service');
 //  @params: Object {
 //    database: String
 //  }
+function listDatabases() {
+  return new Promise(function(resolve, reject) {
+    db.listDatabases(function (err, data) {
+      if (err) reject(err);
+      else resolve(data);
+    });
+  });
+}
+
+//  @params: Object {
+//    database: String
+//  }
 function listTables(params) {
   return new Promise(function(resolve, reject) {
     db.listTables(params, function (err, data) {
@@ -61,6 +73,7 @@ function putItem(params) {
 }
 
 module.exports = {
+  listDatabases,
   listTables,
   getItem,
   scan,

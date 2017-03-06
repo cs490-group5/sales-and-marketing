@@ -92,6 +92,11 @@ const mockData = {
   Analytics: mockWebAnalyticsData
 };
 
+function listDatabases(callback) {
+  const databasesNames = Object.keys(mockData);
+  callback(null, databasesNames);
+}
+
 function listTables(params, callback) {
   if (!params.database || !(params.database in mockData)) {
     callback(new Error('database does not exist'));
@@ -106,7 +111,7 @@ function getItem(params, callback) {
     callback(new Error('database does not exist'));
   } else if (!params.table || !(params.table in mockData[params.database])) {
     callback(new Error('table does not exist'));
-  } else if (!params.id || !(_.findIndex(mockData[params.database][params.table], {'id': params.id}))) {
+  } else if (!params.id || (_.findIndex(mockData[params.database][params.table], {'id': params.id}) === -1)) {
     callback(new Error('id does not exist'));
   } else {
     const table = mockData[params.database][params.table];
@@ -154,6 +159,7 @@ function putItem(params, callback) {
 }
 
 module.exports = {
+  listDatabases,
   listTables,
   getItem,
   scan,
