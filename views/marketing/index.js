@@ -4,14 +4,7 @@ const db = require('../../db/data-service');
 const mmm = require('../../services/marketing-mix-modeling');
 
 router.get('/marketing', function*() {
-  // an example of getting a mock data item and logging it.
-  const params = {
-    database: 'Marketing',
-    table: 'sales'
-  };
-
-  const response = yield db.scan(params);
-  yield this.render('./marketing/index', {params: params, response: response});
+  yield this.render('./marketing/index', {});
 });
 
 router.get('/marketing/marketing-mix-modeling', function*() {
@@ -29,14 +22,11 @@ router.get('/marketing/marketing-mix-modeling', function*() {
 
 
 router.get('/marketing/marketing-automation', function*() {
-  // an example of getting a mock data item and logging it.
-  const params = {
-    database: 'Marketing',
-    table: 'sales'
-  };
+  yield this.render('./marketing/marketing-automation', {});
+});
 
-  const response = yield db.scan(params);
-  yield this.render('./marketing/marketing-automation', {params: params, response: response});
+router.get('/marketing/web-analytics', function*() {
+  yield this.render('./marketing/web-analytics', {});
 });
 
 module.exports = router;
