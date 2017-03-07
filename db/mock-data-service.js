@@ -69,23 +69,6 @@ const mockSalesPeopleData = [
 
 const mockSupportTicketData = {
   table1:[
-    {
-      id: 1,
-      user_id: 1,
-      description: "The pedals won't work properly. Need a replacement",
-      salesperson_id: 1
-    }, {
-      id: 2,
-      user_id: 2,
-      description: "Can't figure out how to order through the website.",
-      salesperson_id: 1
-    },
-    {
-      id: 3,
-      user_id: 3,
-      description: "Chain fell off. How can I put it back on?",
-      salesperson_id: 1
-    }
   ]
 };
 
@@ -155,11 +138,32 @@ function putItem(params, callback) {
       }
       callback(null, params.item);
     } else {
-      const lastId = _.maxBy(table, 'id').id;
-      const newItem = _.assign({id: lastId + 1}, params.item);
+      const lastId = _.maxBy(table, 'id');
+      var newId = 0;
+      if(lastId) {
+        newId = newId + 1;
+      }
+      const newItem = _.assign({id: newId}, params.item);
       table.push(newItem);
       callback(null, newItem);
     }
+  }
+}
+
+
+function createItem(params, callback) {
+  if (!params.database || !(params.database in mockData)) {
+    callback(new Error('database does not exist'));
+  } else if (!params.table || !(params.table in mockData[params.database])) {
+    callback(new Error('table does not exist'));
+  } else if (!params.item) {
+    callback(new Error('input item is null'));
+  } else {
+    debugger;
+    const lastId = _.maxBy(table, 'id').id || 0; // set the first item in a table to id 0
+    const newItem = _.assign({id: lastId + 1}, params.item);
+    table.push(newItem);
+    callback(null, newItem);
   }
 }
 

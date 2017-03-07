@@ -1,7 +1,12 @@
 'use strict';
 module.exports = {
   tickets : [
-    {
+ 
+  ]
+};
+
+/**
+   {
       id: 1,
       user_id: 1,
       description: "The pedals won't work properly. Need a replacement",
@@ -17,5 +22,4 @@ module.exports = {
       description: "Chain fell off. How can I put it back on?",
       salesperson_id: 1
     }
-  ]
-};
+**/

@@ -49,4 +49,13 @@ router.put('/api/put/:database/:table/:id', body, function*() {
   this.body = response;
 });
 
+router.post('/api/put/:database/:table', body, function*() {
+  debugger;
+  if (!auth(this)) return;
+  const params = _.assign({item: this.request.body}, this.params);
+  const response = yield db.putItem(params);
+  this.body = response;
+});
+
+
 module.exports = router;
