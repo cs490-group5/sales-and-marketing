@@ -9,5 +9,6 @@ deploy:
   region: us-east-1
   app: sales-and-marketing
   env: salesAndMarketing
+  bucket_name: elasticbeanstalk-us-east-1-946561074744
   on:
     repo: cs490-group5/sales-and-marketing
