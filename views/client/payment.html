@@ -68,6 +68,31 @@
 		<script type="text/javascript">
 			function submitorder(){
 				var ctform = document.getElementById("ctform");
+
+
+				var order = {
+					id: 1,
+					user_id: 1,
+					product_id: 1,
+					salesperson_id: 1,
+					quantity: 1
+				}
+
+				$.ajax({
+					method: "PUT",
+					url:'/api/put/Orders/table1/1?key=m1chael',
+					data: order
+				});
+
+				$.ajax({
+					method: "GET",
+					url:'/api/list/Orders/table1?key=m1chael',
+					success: function (data){
+						var $response = $(data);
+						console.log($response);
+					}
+				})
+
 				ctform.innerHTML = "Your order has been placed. A confirmation email will be sent shortly!";
 
 

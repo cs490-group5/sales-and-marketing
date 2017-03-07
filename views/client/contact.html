@@ -60,23 +60,15 @@
 					salesperson_id: 1
 				}
 
-				var p = {
-					database: "Support",
-					table: "table1",
-					item: ticket
-				}
-
 				$.ajax({
 					method: "PUT",
 					url:'/api/put/Support/table1/1?key=m1chael',
-					data: p
+					data: ticket
 				});
-
 
 				$.ajax({
 					method: "GET",
 					url:'/api/list/Support/table1?key=m1chael',
-					params: {database:"Support"},
 					success: function (data){
 						var $response = $(data);
 						console.log($response);
