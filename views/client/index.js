@@ -2,6 +2,10 @@
 const router = require('koa-router')();
 const db = require('../../db/data-service');
 
+router.get('', function*() {
+  this.redirect('/client');
+});
+
 router.get('/client', function*() {
   yield this.render('./client/index', {});
 });

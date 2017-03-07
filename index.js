@@ -22,10 +22,7 @@ const routers = [
   require('./views/marketing'),
   require('./views/services'),
   require('./views/client'),
-  require('./views/sales-trend-forecasting'),
-  require('./views/sales-force-automation'),
-  require('./api'),
-  require('./views/web-analytics')
+  require('./api')
 ];
 
 routers.forEach((router) =>
