@@ -49,7 +49,6 @@
 				</form>
 			</section>
 		</main>
-		<script type="text/javascript" src="../../db/mock-data-service.js"></script>
 		<script type="text/javascript">
 			function submitform(){
 				var ctform = document.getElementById("ctform");
@@ -61,15 +60,28 @@
 					salesperson_id: 1
 				}
 
-				var params = {
+				var p = {
 					database: "Support",
-					table: "item", 
+					table: "table1",
 					item: ticket
 				}
 
-				putItem(params, function(e){
-					console.log(e);
+				$.ajax({
+					method: "PUT",
+					url:'/api/put/Support/table1/1?key=m1chael',
+					params: p
 				});
+
+
+				$.ajax({
+					method: "GET",
+					url:'/api/list/Support/table1?key=m1chael',
+					params: {database:"Support"},
+					success: function (data){
+						var $response = $(data);
+						console.log($response);
+					}
+				})
 
 				ctform.innerHTML = "Your ticket has been submitted. We will be in touch shortly!";
 			}

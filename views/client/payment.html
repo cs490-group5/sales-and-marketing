@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="/assets/css/style.css">
+		<link rel="import" href="/assets/head-bootstrap.html">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 		<script src="https://use.fontawesome.com/f4df917d00.js"></script>
 	</head>
@@ -28,18 +29,49 @@
 		</nav>
 		<main>
 			<section class="cwidth">
+				<div class="sectionhead">Order Summary</div>
 				<div class="prodct">
 					<a href="product-bike" class="prodthumb"><img src="/assets/imgs/bike1.jpg"></a>
 					<a href="product-bike" class="prodname">2016 Cool Bike</a>
 				</div>
-				<div class="clear"></div>
 				<div id="checkout-subtotal">
 					<span class="prodprice"><b>Cart subtotal</b>: $499.99</span>
+					<br>
+					<span class="prodprice"><b>Tax</b>: $50.00</span>
+					<br>
+					<div style="width:200px;border-bottom:1px solid #333;height:1px;display:inline-block;"></div>
+					<br>
+					<span class="prodprice"><b>Total</b>: $549.99</span>
 					<br><br>
-					<button onclick="location.href='payment';">Checkout</button>
 				</div>
+				<div class="sectionhead">Payment Information</div>
+				<form id="ctform">
+					<div class="form-group">
+						<span class="form-label">Email</span><br>
+						<input type="text" id="email">
+					</div>
+					<br>
+					<div class="form-group">
+						<span class="form-label">Billing Address</span><br>
+						<input type="text" id="billaddr">
+					</div>
+					<br>
+					<div class="form-group">
+						<span class="form-label">Credit Card Info</span><br>
+						<input type="text" id="ccinfo">
+					</div>
+					<br>
+					<button onclick="submitorder();">Place Order</button>
+				</form>
 			</section>
-
 		</main>
+		<script type="text/javascript">
+			function submitorder(){
+				var ctform = document.getElementById("ctform");
+				ctform.innerHTML = "Your order has been placed. A confirmation email will be sent shortly!";
+
+
+			}
+		</script>
 	</body>
 </html>

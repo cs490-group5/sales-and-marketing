@@ -32,21 +32,24 @@ const mockWebAnalyticsData = {
 
 const mockMarketingData = require('./mock-marketing-data');
 
-const mockOrdersData = [
-  {
-    id: 1,
-    user_id: 1,
-    product_id: 1,
-    salesperson_id: 1,
-    quantity: 10
-  },  {
-    id: 2,
-    user_id: 3,
-    product_id: 2,
-    salesperson_id: 1,
-    quantity: 15
-  },
-];
+const mockOrdersData = {
+  table1:[
+    {
+      id: 1,
+      user_id: 1,
+      product_id: 1,
+      salesperson_id: 1,
+      quantity: 10
+    },
+    {
+      id: 2,
+      user_id: 3,
+      product_id: 2,
+      salesperson_id: 1,
+      quantity: 15
+    }
+  ]
+};
 
 const mockSalesPeopleData = [
   {
@@ -64,25 +67,27 @@ const mockSalesPeopleData = [
   },
 ];
 
-const mockSupportTicketData = [
-  {
-    id: 1,
-    user_id: 1,
-    description: "The pedals won't work properly. Need a replacement",
-    salesperson_id: 1
-  }, {
-    id: 2,
-    user_id: 2,
-    description: "Can't figure out how to order through the website.",
-    salesperson_id: 1
-  },
-  {
-    id: 3,
-    user_id: 3,
-    description: "Chain fell off. How can I put it back on?",
-    salesperson_id: 1
-  }
-];
+const mockSupportTicketData = {
+  table1:[
+    {
+      id: 1,
+      user_id: 1,
+      description: "The pedals won't work properly. Need a replacement",
+      salesperson_id: 1
+    }, {
+      id: 2,
+      user_id: 2,
+      description: "Can't figure out how to order through the website.",
+      salesperson_id: 1
+    },
+    {
+      id: 3,
+      user_id: 3,
+      description: "Chain fell off. How can I put it back on?",
+      salesperson_id: 1
+    }
+  ]
+};
 
 const mockData = {
   Marketing: mockMarketingData,
