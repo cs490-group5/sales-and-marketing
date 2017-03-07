@@ -54,7 +54,6 @@
 				var ctform = document.getElementById("ctform");
 
 				var ticket = {
-					id: 1,
 					user_id: 1,
 					description: document.getElementById("message").value,
 					salesperson_id: 1
@@ -67,9 +66,9 @@
 				}
 
 				$.ajax({
-					method: "PUT",
-					url:'/api/put/Support/table1/1?key=m1chael',
-					data: p
+					method: "POST",
+					url:'/api/put/Support/table1?key=m1chael',
+					data: ticket
 				});
 
 

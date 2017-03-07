@@ -72,6 +72,22 @@ function putItem(params) {
   });
 }
 
+//  @params: Object {
+//    database: String
+//    table: String
+//    item: Object {
+//      ... object attributes ...
+//    }
+//  }
+function createItem(params) {
+  return new Promise(function(resolve, reject) {
+    db.putItem(params, function (err, data) {
+      if (err) reject(err);
+      else resolve(data);
+    });
+  });
+}
+
 module.exports = {
   listDatabases,
   listTables,
