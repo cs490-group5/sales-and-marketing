@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - '6'
+before_deploy: "zip sales-and-marketing.zip *"
 deploy:
   provider: elasticbeanstalk
   access_key_id: AKIAJCHEXIQO3AAEVP4Q
@@ -10,5 +11,7 @@ deploy:
   app: sales-and-marketing
   env: salesAndMarketing
   bucket_name: elasticbeanstalk-us-east-1-946561074744
+  zip_file: sales-and-marketing.zip
+  skip_cleanup: true
   on:
     repo: cs490-group5/sales-and-marketing
