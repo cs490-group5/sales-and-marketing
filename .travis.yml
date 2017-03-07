@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - '6'
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: AKIAJCHEXIQO3AAEVP4Q
+  secret_access_key:
+    secure: e/g9we8qHlrSro9A+N8C4WmgJ+8BsZLVGrTAzAu3czMZQOO3u/izZ+EdkBAic4WlSRUlLKGbxRxXnRDwP6+BurWMDatQFTTJeWc+WxA1p85OE4dhJaJFUHdvfOtvfX/p1efXRfd0LAlocqQxoh7olVkmF1aZ4zha1FInYzn2jvxtHuYiOalyuqGlmTE9daukzVQi/5VXzcYywItGzYJ48Lc/mb3SEL7RoROQifPtcvGzWz9AmNo9a9CEwDELlfCOXtBd+8x0C6AvTYfSiadTnUbsAHJiPKCDqzamqI0ddpynfe534SFi7wfkXhWLf8Bc4SwVqEe2d8ZH/nZqjUjjztUKlBnvuFtNaD1R4ErNhspe1MB/HuA6ior4tH7mybBnGIBBvvTzoKFC9gHeF1DSyPR6bI4Yn3ctWLlxwlmg6XoFXOg6zqZEqnlXkTbufk1QoRsXC9rLOWUix6gmSPEBsGDyQjrqCJO+JU6DNqG83gdBXFGGJUKgEcLApAhCly5pEC9Y8QOsT16CTAbzNlYjl308nmR5prsQY0Jzkogh0cwvGUcbvYg9+UFdkgjZTnNmWgo6obn5qawLuA/zbwoQ11I5UyNXN63aLLFFDzccavbB2OBiw8zWqsCvGSDCyKpB91K7khIh+VjsLkaU01ELcGzNPFoMOaazCfgS90JY75c=
+  region: us-east-1
+  app: sales-and-marketing
+  env: salesAndMarketing
+  on:
+    repo: cs490-group5/sales-and-marketing
