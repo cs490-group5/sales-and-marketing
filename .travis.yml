@@ -1,7 +1,7 @@
 language: node_js
 node_js:
   - '6'
-before_deploy: "zip sales-and-marketing.zip *"
+before_deploy: "zip -r sales-and-marketing.zip *"
 deploy:
   provider: elasticbeanstalk
   access_key_id: AKIAJCHEXIQO3AAEVP4Q
