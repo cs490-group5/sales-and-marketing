@@ -27,4 +27,16 @@ router.get('/marketing/marketing-mix-modeling', function*() {
   yield this.render('./marketing/marketing-mix-modeling', {historyCharts: historyCharts, model: model, promotions: promotions});
 });
 
+
+router.get('/marketing/marketing-automation', function*() {
+  // an example of getting a mock data item and logging it.
+  const params = {
+    database: 'Marketing',
+    table: 'sales'
+  };
+
+  const response = yield db.scan(params);
+  yield this.render('./marketing/marketing-automation', {params: params, response: response});
+});
+
 module.exports = router;
