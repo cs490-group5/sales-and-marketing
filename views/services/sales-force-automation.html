@@ -91,74 +91,19 @@
     <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'orders')">Orders</a>
     <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'sales_people')">Sales People</a>
     <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'leads')">Leads</a>    
-    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'new_ticket')">New Ticket</a>    
+    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'new_ticket')">New Order</a>    
     <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'new_lead')">New Lead</a>    
   </div>
 
   <div id="outstanding_tickets" class="tabcontent">
     <h3 style="border-bottom: black 1px solid;">Outstanding Tickets</h3>
     <div class="ticket__list">
-      <div id="ticket1" class="ticket__container">
-        <div class="ticket__name">
-          Maxwell House
-        </div>
-        <div class="ticket__description">
-          The pedals won't work properly. Need a replacement
-        </div>
-      </div>
-      <br />
-      <div id="ticket2" class="ticket__container">
-        <div class="ticket__name">
-          Wayne Lovett
-        </div>
-        <div class="ticket__description">
-          Can't figure out how to order through the website.
-        </div>
-      </div>
-      <br />
-      <div id="ticket3" class="ticket__container">
-        <div class="ticket__name">
-          Pemal Hatel
-        </div>
-        <div class="ticket__description">
-          Chain fell off. How can I put it back on?
-        </div>
-      </div>
     </div>
   </div>
 
   <div id="orders" class="tabcontent">
     <h3 style="border-bottom: black 1px solid;">Orders</h3>
     <div class="ticket__list">
-      <div id="order1" class="ticket__container">
-        <div class="ticket__name">
-          <span class="bold">Customer Name: </span>Maxwell House
-        </div>
-        <div class="ticket__description">
-          <span class="bold">Product Name: </span>Enduro-250
-        </div>
-        <div class="ticket__description">
-          <span class="bold">Quantity: </span>10
-        </div>
-        <div class="ticket__description">
-          <span class="bold">Total Price: </span>$10,000
-        </div>
-      </div>
-      <br />
-      <div id="order2" class="ticket__container">
-        <div class="ticket__name">
-          <span class="bold">Customer Name: </span>Pemal Hatel
-        </div>
-        <div class="ticket__description">
-          <span class="bold">Product Name: </span>Moto-450
-        </div>
-        <div class="ticket__description">
-          <span class="bold">Quantity: </span>15
-        </div>
-        <div class="ticket__description">
-          <span class="bold">Total Price: </span>$15,000
-        </div>
-      </div>
     </div>
   </div>
 
@@ -207,18 +152,6 @@
   <div id="leads" class="tabcontent">
     <h3 style="border-bottom: black 1px solid;">Leads</h3>
     <div class="ticket__list">
-      <div id="lead1" class="ticket__container">
-        <div class="ticket__name">
-          <span class="bold">Name: </span>Oliver Q.
-        </div>
-        <div class="ticket__description">
-          <span class="bold">Phone Number: </span>(416) 556 - 3334
-        </div>
-        <div class="ticket__description">
-          Inbound lead. Called interested in orange bikes.
-        </div>
-      </div>
-      <br />
     </div>
   </div>
 
@@ -227,17 +160,18 @@
     <div class="ticket__list">
       <div class="ticket__container">
         <div class="ticket__description">
-          <span class="bold">Customer ID: </span><input />
+          <span class="bold">Customer ID: </span><input class="user_id" />
         </div>
         <div class="ticket__description">
-          <span class="bold">Product ID: </span><input />
+          <span class="bold">Product ID: </span><input class="product_id"/>
         </div>
         <div class="ticket__description">
-          <span class="bold">Quantity: </span><input />
+          <span class="bold">Quantity: </span><input class="quantity" />
         </div>
       </div>
       <br />
     </div>
+    <button onclick="newOrderForm();">Submit</button>
   </div>
 
 
@@ -246,14 +180,18 @@
     <div class="ticket__list">
       <div class="ticket__container">
         <div class="ticket__description">
-          <span class="bold">Phone Number: </span><input />
+          <span class="bold">Name </span><input class="name"/>
         </div>
         <div class="ticket__description">
-          <span class="bold">Description: </span><textarea></textarea>
+          <span class="bold">Phone Number: </span><input class="phone_number" />
+        </div>
+        <div class="ticket__description">
+          <span class="bold">Description: </span><textarea class="description"></textarea>
         </div>
       </div>
       <br />
     </div>
+    <button onclick="newLeadForm();">Submit</button>
   </div>
 
 <script>
@@ -273,6 +211,108 @@ function openCity(evt, cityName) {
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
+</script>
+
+<script type="text/javascript">
+
+  // get help desk tickets
+  $.ajax({
+    method: "GET",
+    url:'/api/list/Support/table1?key=m1chael',
+    success: function (data){
+      var $response = $(data);
+      $ticketContainer = $("#outstanding_tickets .ticket__list");
+      $response.toArray().forEach(function(item) {
+        $ticketContainer.prepend($([
+          "<div class='ticket__container'>",
+          "  <div class='ticket__name'><span class='bold'>User Id: </span>" + item.user_id +"</div>",
+          "  <div class='ticket__name'><span class='bold'>Description: </span>" + item.description+"</div>",
+          "</div>",
+          "<br />"
+        ].join("\n")));
+      });
+    }
+  });
+
+  // orders ticke
+  $.ajax({
+    method: "GET",
+    url:'/api/list/Orders/table1?key=m1chael',
+    success: function (data){
+      var $response = $(data);
+      $ticketContainer = $("#orders .ticket__list");
+      $response.toArray().forEach(function(item) {
+        $ticketContainer.prepend($([
+          "<div class='ticket__container'>",
+          "  <div class='ticket__name'><span class='bold'>User Id: </span>" + item.user_id +"</div>",
+          "  <div class='ticket__name'><span class='bold'>Product ID: </span>" + item.product_id+"</div>",
+          "  <div class='ticket__name'><span class='bold'>Quantity: </span>" + item.quantity+"</div>",  
+          "  <div class='ticket__name'><span class='bold'>Sales Person ID: </span>" + item.salesperson_id+"</div>",
+          "</div>",
+          "<br />"
+        ].join("\n")));
+      });
+    }
+  });
+
+  // leads
+  $.ajax({
+    method: "GET",
+    url:'/api/list/Leads/table1?key=m1chael',
+    success: function (data){
+      var $response = $(data);
+      $ticketContainer = $("#leads .ticket__list");
+      $response.toArray().forEach(function(item) {
+        $ticketContainer.prepend($([
+          "<div class='ticket__container'>",
+          "  <div class='ticket__name'><span class='bold'>Name: </span>" + item.name +"</div>",
+          "  <div class='ticket__name'><span class='bold'>Phone Number: </span>" + item.phone_number+"</div>",
+          "  <div class='ticket__name'><span class='bold'>Description: </span>" + item.description+"</div>",          
+          "</div>",
+          "<br />"
+        ].join("\n")));
+      });
+    }
+  });
+
+
+</script>
+
+<script type="text/javascript">
+  function newLeadForm(){
+    var leadForm = document.getElementById("new_lead");
+
+    $.ajax({
+      method: "PUT",
+      url:'/api/put/Leads/table1?key=m1chael',
+      data: {
+        name: $("#new_lead input.name").val(),
+        phone_number: $("#new_lead input.phone_number").val(),
+        description: $("#new_lead textarea").val()
+      }
+    });
+
+    leadForm.innerHTML = "Your order has been submitted. We will be in touch shortly!";
+  }
+</script>
+
+<script type="text/javascript">
+  function newOrderForm(){
+    var orderForm = document.getElementById("new_ticket");
+
+    $.ajax({
+      method: "PUT",
+      url:'/api/put/Orders/table1?key=m1chael',
+      data: {
+        user_id: parseInt($("#new_ticket input.user_id").val()), 
+        product_id: parseInt($("#new_ticket input.product_id").val()),
+        salesperson_id: 1,
+        quantity: parseInt($("#new_ticket input.quantity").val())
+      }
+    });
+
+    orderForm.innerHTML = "Your order has been submitted. We will be in touch shortly!";
+  }
 </script>
 
 

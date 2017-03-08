@@ -51,6 +51,17 @@ const mockOrdersData = {
   ]
 };
 
+const mockLeadsData = {
+  table1:[
+    {
+      id: 1,
+      name: "Rutherford W",
+      phone_number: "(415) 582-7417",
+      description: "Wants to buy tons of bikes."
+    },
+  ]
+};
+
 const mockSalesPeopleData = [
   {
     id: 1,
@@ -94,7 +105,8 @@ const mockData = {
   Orders: mockOrdersData,
   Sales: mockSalesPeopleData,
   Support: mockSupportTicketData,
-  Analytics: mockWebAnalyticsData
+  Analytics: mockWebAnalyticsData,
+  Leads: mockLeadsData
 };
 
 function listDatabases(callback) {
