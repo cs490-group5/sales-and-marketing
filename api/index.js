@@ -50,8 +50,8 @@ router.put('/api/put/:database/:table', body, function*() {
 
 router.put('/api/put/:database/:table/:id', body, function*() {
   if (!auth(this)) return;
-  this.params.id = parseInt(this.params.id, 10);
-  const params = _.assign({item: this.request.body}, this.params);
+  const item = _.assign({id: parseInt(this.params.id, 10)}, this.request.body);
+  const params = _.assign({item: item}, this.params);
   const response = yield db.putItem(params);
   this.body = response;
 });
