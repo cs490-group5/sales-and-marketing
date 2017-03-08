@@ -264,10 +264,11 @@ document.getElementById("defaultOpen").click();
       $ticketContainer = $("#leads .ticket__list");
       $response.toArray().forEach(function(item) {
         $ticketContainer.prepend($([
-          "<div class='ticket__container'>",
+          "<div id='lead" + item.id + "' class='ticket__container'>",
           "  <div class='ticket__name'><span class='bold'>Name: </span>" + item.name +"</div>",
           "  <div class='ticket__name'><span class='bold'>Phone Number: </span>" + item.phone_number+"</div>",
           "  <div class='ticket__name'><span class='bold'>Description: </span>" + item.description+"</div>",          
+          "<div class='ticket__name'><button onclick='assignLead(\"" + item.id +"\");'>Assign Lead</button></div>",
           "</div>",
           "<br />"
         ].join("\n")));
@@ -294,6 +295,24 @@ document.getElementById("defaultOpen").click();
 
     leadForm.innerHTML = "Your order has been submitted. We will be in touch shortly!";
   }
+
+  function assignLead(id) {
+    /*
+    debugger;
+    $.ajax({
+      method: "PUT",
+      url:'/api/put/Leads/table1/' + id + '?key=m1chael',
+      data: {
+        id: parseInt(1),
+        salesperson_id: parseInt(1)
+      }
+    }).done(function() {
+      alert("Lead Assigned!");
+    });
+    */
+    alert("Lead Assigned!");
+  }
+
 </script>
 
 <script type="text/javascript">
