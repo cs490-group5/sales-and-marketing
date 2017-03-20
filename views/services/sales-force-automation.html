@@ -4,14 +4,14 @@
   body {
     font-family: "Lato", sans-serif;
   }
-  
+
   div.tab {
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
   }
   /* Style the links inside the tab */
-  
+
   div.tab a {
     float: left;
     display: block;
@@ -23,25 +23,25 @@
     font-size: 17px;
   }
   /* Change background color of links on hover */
-  
+
   div.tab a:hover {
     background-color: #ddd;
   }
   /* Create an active/current tablink class */
-  
+
   div.tab a:focus,
   .active {
     background-color: #ccc;
   }
   /* Style the tab content */
-  
+
   .tabcontent {
     display: none;
     padding: 3px 12px;
     border: 1px solid #ccc;
     border-top: none;
   }
-  
+
   .topright:hover {
     color: red;
   }
@@ -90,9 +90,9 @@
     <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'outstanding_tickets')" id="defaultOpen">Help Desk Tickets</a>
     <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'orders')">Orders</a>
     <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'sales_people')">Sales People</a>
-    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'leads')">Leads</a>    
-    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'new_ticket')">New Order</a>    
-    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'new_lead')">New Lead</a>    
+    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'leads')">Leads</a>
+    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'new_ticket')">New Order</a>
+    <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'new_lead')">New Lead</a>
   </div>
 
   <div id="outstanding_tickets" class="tabcontent">
@@ -246,7 +246,7 @@ document.getElementById("defaultOpen").click();
           "<div class='ticket__container'>",
           "  <div class='ticket__name'><span class='bold'>User Id: </span>" + item.user_id +"</div>",
           "  <div class='ticket__name'><span class='bold'>Product ID: </span>" + item.product_id+"</div>",
-          "  <div class='ticket__name'><span class='bold'>Quantity: </span>" + item.quantity+"</div>",  
+          "  <div class='ticket__name'><span class='bold'>Quantity: </span>" + item.quantity+"</div>",
           "  <div class='ticket__name'><span class='bold'>Sales Person ID: </span>" + item.salesperson_id+"</div>",
           "</div>",
           "<br />"
@@ -267,7 +267,7 @@ document.getElementById("defaultOpen").click();
           "<div id='lead" + item.id + "' class='ticket__container'>",
           "  <div class='ticket__name'><span class='bold'>Name: </span>" + item.name +"</div>",
           "  <div class='ticket__name'><span class='bold'>Phone Number: </span>" + item.phone_number+"</div>",
-          "  <div class='ticket__name'><span class='bold'>Description: </span>" + item.description+"</div>",          
+          "  <div class='ticket__name'><span class='bold'>Description: </span>" + item.description+"</div>",
           "<div class='ticket__name'><button onclick='assignLead(\"" + item.id +"\");'>Assign Lead</button></div>",
           "</div>",
           "<br />"
@@ -286,11 +286,12 @@ document.getElementById("defaultOpen").click();
     $.ajax({
       method: "PUT",
       url:'/api/put/Leads/table1?key=m1chael',
-      data: {
+      data: JSON.stringify({
         name: $("#new_lead input.name").val(),
         phone_number: $("#new_lead input.phone_number").val(),
         description: $("#new_lead textarea").val()
-      }
+      }),
+      contentType: 'application/json'
     });
 
     leadForm.innerHTML = "Your order has been submitted. We will be in touch shortly!";
@@ -318,16 +319,34 @@ document.getElementById("defaultOpen").click();
 <script type="text/javascript">
   function newOrderForm(){
     var orderForm = document.getElementById("new_ticket");
+    var product_id = parseInt($("#new_ticket input.product_id").val(), 10);
+    var quantity = parseInt($("#new_ticket input.quantity").val(), 10);
 
     $.ajax({
       method: "PUT",
       url:'/api/put/Orders/table1?key=m1chael',
-      data: {
-        user_id: parseInt($("#new_ticket input.user_id").val()), 
-        product_id: parseInt($("#new_ticket input.product_id").val()),
+      data: JSON.stringify({
+        user_id: parseInt($("#new_ticket input.user_id").val()),
+        product_id: product_id,
         salesperson_id: 1,
-        quantity: parseInt($("#new_ticket input.quantity").val())
-      }
+        quantity: quantity
+      }),
+      contentType: 'application/json'
+    }).done(function insertToSales(){
+      $.ajax({
+        method: "PUT",
+        url:'/api/put/Marketing/sales?key=m1chael',
+        data: JSON.stringify({
+          date: parseInt(Date.now() / 1000, 10),
+          item: product_id,
+          quantity: quantity,
+          discount: 0,
+          location: 'N/A',
+          channel: 1, // retail
+          promotion: 4 // personal selling
+        }),
+        contentType: 'application/json'
+      });
     });
 
     orderForm.innerHTML = "Your order has been submitted. We will be in touch shortly!";

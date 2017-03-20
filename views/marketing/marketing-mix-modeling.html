@@ -39,8 +39,8 @@
             <input id="promotion3" type="text" class="form-control" placeholder="Web ads" value="<%- promotions[2].spending %>">
           </div>
           <div class="input-group">
-            <label for="promotion1">Newspaper</label>
-            <input id="promotion4" ype="text" class="form-control" placeholder="Newspaper" value="<%- promotions[3].spending %>">
+            <label for="promotion1">Personal Selling</label>
+            <input id="promotion4" ype="text" class="form-control" placeholder="Personal Selling" value="<%- promotions[3].spending %>">
           </div>
           <div class="input-group">
             <label for="promotion1">Social Media</label>
@@ -145,7 +145,7 @@
     var salesByPromotionChart = new Chart(salesByPromotion, {
       type: 'bar',
       data: {
-        labels: ['TV ads', 'Radio', 'Web ads', 'Newspaper', 'Social Media'],
+        labels: ['TV ads', 'Radio', 'Web ads', 'Personal Selling', 'Social Media'],
         datasets: [{
           label: '# of Sales',
           data: [<%- historyCharts.salesByPromotion %>],
@@ -276,7 +276,7 @@
     var salesByPromotionForecastChart = new Chart(salesByPromotionForecast, {
       type: 'bar',
       data: {
-        labels: ['TV ads', 'Radio', 'Web ads', 'Newspaper', 'Social Media'],
+        labels: ['TV ads', 'Radio', 'Web ads', 'Personal Selling', 'Social Media'],
         datasets: [{
           label: '# of Sales',
           data: [<%- historyCharts.salesByPromotion %>],

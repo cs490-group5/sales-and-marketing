@@ -81,7 +81,8 @@
 				$.ajax({
 					method: "PUT",
 					url:'/api/put/Orders/table1?key=m1chael',
-					data: order
+					data: JSON.stringify(order),
+					contentType: 'application/json'
 				});
 
 				$.ajax({

@@ -63,7 +63,8 @@
 				$.ajax({
 					method: "PUT",
 					url:'/api/put/Support/table1?key=m1chael',
-					data: ticket
+					data: JSON.stringify(ticket),
+					contentType: 'application/json'
 				});
 
 				$.ajax({

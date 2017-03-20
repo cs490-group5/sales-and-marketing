@@ -11,23 +11,23 @@ function *createHistoryCharts() {
   const sales = yield db.scan(params);
 
   const salesByItem = [
-    _.filter(sales, {'item': 1}).length,
-    _.filter(sales, {'item': 2}).length
+    _.sumBy(_.filter(sales, {'item': 1}), 'quantity'),
+    _.sumBy(_.filter(sales, {'item': 2}), 'quantity')
   ];
 
   const salesByChannel = [
-    _.filter(sales, {'channel': 1}).length,
-    _.filter(sales, {'channel': 2}).length,
-    _.filter(sales, {'channel': 3}).length
+    _.sumBy(_.filter(sales, {'channel': 1}), 'quantity'),
+    _.sumBy(_.filter(sales, {'channel': 2}), 'quantity'),
+    _.sumBy(_.filter(sales, {'channel': 3}), 'quantity')
   ];
 
   // I can really use _.map here but just lazy
   const salesByPromotion = [
-    _.filter(sales, {'promotion': 1}).length,
-    _.filter(sales, {'promotion': 2}).length,
-    _.filter(sales, {'promotion': 3}).length,
-    _.filter(sales, {'promotion': 4}).length,
-    _.filter(sales, {'promotion': 5}).length
+    _.sumBy(_.filter(sales, {'promotion': 1}), 'quantity'),
+    _.sumBy(_.filter(sales, {'promotion': 2}), 'quantity'),
+    _.sumBy(_.filter(sales, {'promotion': 3}), 'quantity'),
+    _.sumBy(_.filter(sales, {'promotion': 4}), 'quantity'),
+    _.sumBy(_.filter(sales, {'promotion': 5}), 'quantity'),
   ];
 
   const historyCharts = {
@@ -54,28 +54,28 @@ function *createMarketingMixModel() {
 
   const salesPerPromotionByItem = [
     _.map(promotions, function(promotion){
-      return 1.0 * _.filter(sales, {'item': 1, 'promotion': promotion.id}).length / promotion.spending;
+      return 1.0 * _.sumBy(_.filter(sales, {'item': 1, 'promotion': promotion.id}), 'quantity') / promotion.spending;
     }),
     _.map(promotions, function(promotion){
-      return 1.0 * _.filter(sales, {'item': 2, 'promotion': promotion.id}).length / promotion.spending;
+      return 1.0 * _.sumBy(_.filter(sales, {'item': 2, 'promotion': promotion.id}), 'quantity') / promotion.spending;
     })
   ];
 
   const salesPerPromotionByChannel = [
     _.map(promotions, function(promotion){
-      return 1.0 * _.filter(sales, {'channel': 1, 'promotion': promotion.id}).length / promotion.spending;
+      return 1.0 * _.sumBy(_.filter(sales, {'channel': 1, 'promotion': promotion.id}), 'quantity') / promotion.spending;
     }),
     _.map(promotions, function(promotion){
-      return 1.0 * _.filter(sales, {'channel': 2, 'promotion': promotion.id}).length / promotion.spending;
+      return 1.0 * _.sumBy(_.filter(sales, {'channel': 2, 'promotion': promotion.id}), 'quantity') / promotion.spending;
     }),
     _.map(promotions, function(promotion){
-      return 1.0 * _.filter(sales, {'channel': 3, 'promotion': promotion.id}).length / promotion.spending;
+      return 1.0 * _.sumBy(_.filter(sales, {'channel': 3, 'promotion': promotion.id}), 'quantity') / promotion.spending;
     })
   ];
 
   const salesPerPromotionByPromotion =
     _.map(promotions, function(promotion){
-      return 1.0 * _.filter(sales, {'promotion': promotion.id}).length / promotion.spending;
+      return 1.0 * _.sumBy(_.filter(sales, {'promotion': promotion.id}), 'quantity') / promotion.spending;
     });
 
   const marketingMixModel = {
