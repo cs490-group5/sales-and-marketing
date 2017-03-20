@@ -30,6 +30,8 @@ router.get('/api/list/:database', function*() {
 
 router.get('/api/list/:database/:table', function*() {
   if (!auth(this)) return;
+  this.params.query = _.assign({}, this.request.query); //copy instead of pointer
+  delete this.params.query.key; //remove secret key from query
   const response = yield db.scan(this.params);
   this.body = response;
 });

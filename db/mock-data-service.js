@@ -145,7 +145,16 @@ function scan(params, callback) {
   } else {
     // LastEvaluatedKey and pagination could be added later
     const table = mockData[params.database][params.table];
-    callback(null, table);
+    if (params.query) {
+      const filteredTable = _.filter(table, function match(object) {
+        return _.isMatchWith(object, params.query, function valueEqual(objectValue, queryValue) {
+          return objectValue == queryValue; // doing value equal to also return '1' == 1
+        });
+      });
+      callback(null, filteredTable);
+    } else {
+      callback(null, table);
+    }
   }
 }
 
