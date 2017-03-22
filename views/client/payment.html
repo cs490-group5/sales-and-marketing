@@ -80,10 +80,14 @@
 
 				$.ajax({
 					method: "PUT",
-					url:'/api/put/Orders/table1?key=m1chael',
+					url:'/services/sales-force-automation/order',
 					data: JSON.stringify(order),
 					contentType: 'application/json'
-				});
+				}).done(function() {
+		      ctform.innerHTML = "Your order has been submitted. A confirmation email will be sent shortly!";
+		    }).fail(function() {
+		      ctform.innerHTML = "Failed order to place order. Place try again later!";
+		    });
 
 				$.ajax({
 					method: "GET",
@@ -92,10 +96,7 @@
 						var $response = $(data);
 						console.log($response);
 					}
-				})
-
-				ctform.innerHTML = "Your order has been placed. A confirmation email will be sent shortly!";
-
+				});
 
 			}
 		</script>

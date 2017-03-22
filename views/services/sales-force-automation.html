@@ -324,7 +324,7 @@ document.getElementById("defaultOpen").click();
 
     $.ajax({
       method: "PUT",
-      url:'/api/put/Orders/table1?key=m1chael',
+      url:'/services/sales-force-automation/order',
       data: JSON.stringify({
         user_id: parseInt($("#new_ticket input.user_id").val()),
         product_id: product_id,
@@ -332,24 +332,13 @@ document.getElementById("defaultOpen").click();
         quantity: quantity
       }),
       contentType: 'application/json'
-    }).done(function insertToSales(){
-      $.ajax({
-        method: "PUT",
-        url:'/api/put/Marketing/sales?key=m1chael',
-        data: JSON.stringify({
-          date: parseInt(Date.now() / 1000, 10),
-          item: product_id,
-          quantity: quantity,
-          discount: 0,
-          location: 'N/A',
-          channel: 1, // retail
-          promotion: 4 // personal selling
-        }),
-        contentType: 'application/json'
-      });
+    }).done(function() {
+      orderForm.innerHTML = "Your order has been submitted. We will be in touch shortly!";
+    }).fail(function() {
+      orderForm.innerHTML = "Failed order to place order. Place try again later!";
     });
 
-    orderForm.innerHTML = "Your order has been submitted. We will be in touch shortly!";
+
   }
 </script>
 
