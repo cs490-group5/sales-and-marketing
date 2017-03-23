@@ -19,14 +19,13 @@ router.get('/services/sales-force-automation', function*() {
 router.put('/services/sales-force-automation/order', body, function*() {
   return orderProcessing.newOrder(this.request.body)
     .then((res) => {
-      console.log('succeeded', res);
       this.status = 200;
       this.body = 'order successfully processed';
     })
     .catch((err) => {
-      console.log('failed', err);
-      this.status = 500
-      this.throw(err);
+      this.status = 500;
+      this.body = err.message;
+      this.app.emit('error', err, this);
     });
 });
 

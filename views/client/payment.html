@@ -45,7 +45,7 @@
 					<br><br>
 				</div>
 				<div class="sectionhead">Payment Information</div>
-				<form id="ctform">
+				<div id="ctform">
 					<div class="form-group">
 						<span class="form-label">Email</span><br>
 						<input type="text" id="email">
@@ -62,7 +62,7 @@
 					</div>
 					<br>
 					<button onclick="submitorder();">Place Order</button>
-				</form>
+				</div>
 			</section>
 		</main>
 		<script type="text/javascript">
@@ -71,12 +71,11 @@
 
 
 				var order = {
-					id: 1,
 					user_id: 1,
 					product_id: 1,
 					salesperson_id: 1,
 					quantity: 1
-				}
+				};
 
 				$.ajax({
 					method: "PUT",
@@ -85,18 +84,11 @@
 					contentType: 'application/json'
 				}).done(function() {
 		      ctform.innerHTML = "Your order has been submitted. A confirmation email will be sent shortly!";
-		    }).fail(function() {
-		      ctform.innerHTML = "Failed order to place order. Place try again later!";
+		    }).fail(function(err) {
+		      orderForm.innerHTML = "Failed order to place order. Place try again later!";
+		      orderForm.innerHTML += "<br />" + err.responseText;
+		      console.log(err);
 		    });
-
-				$.ajax({
-					method: "GET",
-					url:'/api/list/Orders/table1?key=m1chael',
-					success: function (data){
-						var $response = $(data);
-						console.log($response);
-					}
-				});
 
 			}
 		</script>

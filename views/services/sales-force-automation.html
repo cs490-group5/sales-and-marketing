@@ -334,8 +334,10 @@ document.getElementById("defaultOpen").click();
       contentType: 'application/json'
     }).done(function() {
       orderForm.innerHTML = "Your order has been submitted. We will be in touch shortly!";
-    }).fail(function() {
+    }).fail(function(err) {
       orderForm.innerHTML = "Failed order to place order. Place try again later!";
+      orderForm.innerHTML += "<br />" + err.responseText;
+      console.log(err);
     });
 
 
