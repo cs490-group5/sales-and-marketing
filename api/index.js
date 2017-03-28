@@ -64,5 +64,10 @@ router.get('/api/external/hrm/salespeople', body, function*() {
   this.body = data;
 });
 
+router.get('/api/external/crm/customers', body, function*() {
+  const data = yield rp.get("http://138.197.159.113/api/customers");
+  this.body = data;
+});
+
 
 module.exports = router;

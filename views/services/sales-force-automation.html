@@ -183,15 +183,29 @@ document.getElementById("defaultOpen").click();
     url:'/api/list/Support/table1?key=m1chael',
     success: function (data){
       var $response = $(data);
-      $ticketContainer = $("#outstanding_tickets .ticket__list");
-      $response.toArray().forEach(function(item) {
-        $ticketContainer.prepend($([
-          "<div class='ticket__container'>",
-          "  <div class='ticket__name'><span class='bold'>User Id: </span>" + item.user_id +"</div>",
-          "  <div class='ticket__name'><span class='bold'>Description: </span>" + item.description+"</div>",
-          "</div>",
-          "<br />"
-        ].join("\n")));
+      $.ajax({
+        method: "GET",
+        url:'/api/external/crm/customers',
+        success: function (customerData){
+          var customerData = JSON.parse(customerData);
+          customerMap = {};
+          customerData.forEach(function(customer) {
+            customerMap[customer.id] = customer;
+          });
+
+          debugger;
+
+          $ticketContainer = $("#outstanding_tickets .ticket__list");
+          $response.toArray().forEach(function(item) {
+            $ticketContainer.prepend($([
+              "<div class='ticket__container'>",
+              "  <div class='ticket__name'><span class='bold'>User Name: </span>" + customerData[item.user_id].firstname + " " + customerData[item.user_id].lastname +"</div>",
+              "  <div class='ticket__name'><span class='bold'>Description: </span>" + item.description+"</div>",
+              "</div>",
+              "<br />"
+            ].join("\n")));
+          });
+        }
       });
     }
   });
