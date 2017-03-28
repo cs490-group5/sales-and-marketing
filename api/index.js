@@ -3,6 +3,7 @@ const router = require('koa-router')();
 const db = require('../db/data-service');
 const _ = require('lodash');
 const body = require('koa-body')();
+const rp = require('request-promise');
 
 const secretKey = 'm1chael';
 
@@ -57,5 +58,11 @@ router.put('/api/put/:database/:table/:id', body, function*() {
   const response = yield db.putItem(params);
   this.body = response;
 });
+
+router.get('/api/external/hrm/salespeople', body, function*() {
+  const data = yield rp.get("https://mvvkvhcd92.execute-api.us-west-2.amazonaws.com/prod/GetSalesEmployees");
+  this.body = data;
+});
+
 
 module.exports = router;

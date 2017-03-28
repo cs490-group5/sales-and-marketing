@@ -83,8 +83,6 @@
     </div>
   </div>
 
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
   <div class="tab">
     <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'outstanding_tickets')" id="defaultOpen">Help Desk Tickets</a>
@@ -110,42 +108,6 @@
   <div id="sales_people" class="tabcontent">
     <h3 style="border-bottom: black 1px solid;">Sales People</h3>
     <div class="ticket__list">
-      <div id="person1" class="ticket__container">
-        <div class="ticket__name">
-          <span class="bold">Name: </span>Jonah Glover
-        </div>
-        <div class="ticket__description">
-          <span class="bold">ID: </span>1
-        </div>
-        <div class="ticket__description">
-          <span class="bold">Skill: </span>Closing
-        </div>
-      </div>
-      <br />
-      <div id="person1" class="ticket__container">
-        <div class="ticket__name">
-          <span class="bold">Name: </span>Foo Bar
-        </div>
-        <div class="ticket__description">
-          <span class="bold">ID: </span>2
-        </div>
-        <div class="ticket__description">
-          <span class="bold">Skill: </span>Help Desk
-        </div>
-      </div>
-      <br />
-      <div id="person1" class="ticket__container">
-        <div class="ticket__name">
-          <span class="bold">Name: </span>Malpa Hetel
-        </div>
-        <div class="ticket__description">
-          <span class="bold">ID: </span>3
-        </div>
-        <div class="ticket__description">
-          <span class="bold">Skill: </span>First Contact
-        </div>
-      </div>
-      <br />
     </div>
   </div>
 
@@ -227,6 +189,27 @@ document.getElementById("defaultOpen").click();
           "<div class='ticket__container'>",
           "  <div class='ticket__name'><span class='bold'>User Id: </span>" + item.user_id +"</div>",
           "  <div class='ticket__name'><span class='bold'>Description: </span>" + item.description+"</div>",
+          "</div>",
+          "<br />"
+        ].join("\n")));
+      });
+    }
+  });
+
+  // sales sales_people
+  $.ajax({
+    method: "GET",
+    url:'/api/external/hrm/salespeople',
+    success: function (data){
+      var splitLines = data.match(/[^\r\n]+/g);
+      var $response = $(data);
+      $ticketContainer = $("#sales_people .ticket__list");
+      splitLines.forEach(function(item) {
+        salesData = item.split(" ");
+        $ticketContainer.prepend($([
+          "<div class='ticket__container'>",
+          "  <div class='ticket__name'><span class='bold'>Name: </span>" + salesData[0] + " " + salesData[1] +"</div>",
+          "  <div class='ticket__name'><span class='bold'>ID: </span>" + salesData[2] +"</div>",
           "</div>",
           "<br />"
         ].join("\n")));
