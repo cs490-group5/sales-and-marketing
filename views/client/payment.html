@@ -57,6 +57,11 @@
 					</div>
 					<br>
 					<div class="form-group">
+						<span class="form-label">Shipping Address</span><br>
+						<input type="text" id="shipaddr">
+					</div>
+					<br>
+					<div class="form-group">
 						<span class="form-label">Credit Card Info</span><br>
 						<input type="text" id="ccinfo">
 					</div>
@@ -69,13 +74,12 @@
 			function submitorder(){
 				var ctform = document.getElementById("ctform");
 
-				var d = new Date();
-
 				var order = {
 					user_id: 1,
 					user_name: "John Doe",
 					product_id: 1,
-					product_name: "2016 Cool Bike",
+					product_name: "Enduro 250",
+					ship_addr: document.getElementById("shipaddr").value,
 					salesperson_id: 1,
 					quantity: 1,
 					price_total: 549.99,
