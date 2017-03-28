@@ -32,7 +32,7 @@
 				<div class="sectionhead">Order Summary</div>
 				<div class="prodct">
 					<a href="product-bike" class="prodthumb"><img src="/assets/imgs/bike1.jpg"></a>
-					<a href="product-bike" class="prodname">2016 Cool Bike</a>
+					<a href="product-bike" class="prodname">Enduro 250</a>
 				</div>
 				<div id="checkout-subtotal">
 					<span class="prodprice"><b>Cart subtotal</b>: $499.99</span>
@@ -69,12 +69,19 @@
 			function submitorder(){
 				var ctform = document.getElementById("ctform");
 
+				var d = new Date();
 
 				var order = {
 					user_id: 1,
+					user_name: "John Doe",
 					product_id: 1,
+					product_name: "2016 Cool Bike",
 					salesperson_id: 1,
-					quantity: 1
+					quantity: 1,
+					price_total: 549.99,
+					date: (new Date).getTime(),
+					delivery_status: 0,
+					payment_status: false // i.e. not yet recieved
 				};
 
 				$.ajax({
@@ -85,8 +92,8 @@
 				}).done(function() {
 		      ctform.innerHTML = "Your order has been submitted. A confirmation email will be sent shortly!";
 		    }).fail(function(err) {
-		      orderForm.innerHTML = "Failed order to place order. Place try again later!";
-		      orderForm.innerHTML += "<br />" + err.responseText;
+		      ctform.innerHTML = "Failed order to place order. Place try again later!";
+		      ctform.innerHTML += "<br />" + err.responseText;
 		      console.log(err);
 		    });
 

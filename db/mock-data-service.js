@@ -37,16 +37,27 @@ const mockOrdersData = {
     {
       id: 1,
       user_id: 1,
+      user_name: "Billy Bob",
       product_id: 1,
+      product_name: "Enduro 250",
       salesperson_id: 1,
-      quantity: 10
+      quantity: 10,
+      price_total: 5499.90,
+      date: "1490659974792",
+      delivery_status: 0,
+      payment_status: true
     },
     {
       id: 2,
       user_id: 3,
+      user_name: "Billy Bob",
       product_id: 2,
+      product_name: "Moto 450",
       salesperson_id: 1,
-      quantity: 15
+      quantity: 10,
+      price_total: 10000.00,
+      delivery_status: 0,
+      payment_status: true
     }
   ]
 };
