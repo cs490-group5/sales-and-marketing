@@ -232,11 +232,13 @@ document.getElementById("defaultOpen").click();
     }
   });
 
+
+
   // orders ticke
   $.ajax({
     method: "GET",
     url:'/api/list/Orders/table1?key=m1chael',
-    success: function (data){
+    success: function (data) {
       var $response = $(data);
       $ticketContainer = $("#orders .ticket__list");
       $response.toArray().forEach(function(item) {
@@ -246,6 +248,8 @@ document.getElementById("defaultOpen").click();
           "  <div class='ticket__name'><span class='bold'>Product ID: </span>" + item.product_id+"</div>",
           "  <div class='ticket__name'><span class='bold'>Quantity: </span>" + item.quantity+"</div>",
           "  <div class='ticket__name'><span class='bold'>Sales Person ID: </span>" + item.salesperson_id+"</div>",
+          "  <div class='ticket__name'><span class='bold'>Payment Status: </span>" + item.payment_status + "</div>",
+          "  <div class='ticket__name'><span class='bold'>Delivery Status: </span>" + item.delivery_status + "</div>",
           "</div>",
           "<br />"
         ].join("\n")));
