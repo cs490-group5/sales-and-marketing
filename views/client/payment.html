@@ -47,6 +47,11 @@
 				<div class="sectionhead">Payment Information</div>
 				<div id="ctform">
 					<div class="form-group">
+						<span class="form-label">User ID</span><br>
+						<input type="text" id="user_id">
+					</div>
+					<br>
+					<div class="form-group">
 						<span class="form-label">Email</span><br>
 						<input type="text" id="email">
 					</div>
@@ -75,7 +80,7 @@
 				var ctform = document.getElementById("ctform");
 
 				var order = {
-					user_id: 1,
+					user_id: document.getElementById("user_id").value,
 					user_name: "John Doe",
 					product_id: 1,
 					product_name: "Enduro 250",

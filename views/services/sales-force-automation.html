@@ -130,6 +130,9 @@
         <div class="ticket__description">
           <span class="bold">Quantity: </span><input class="quantity" />
         </div>
+        <div class="ticket__description">
+          <span class="bold">Shipping Address: </span><input class="shipaddr" id="shipaddr" />
+        </div>
       </div>
       <br />
     </div>
@@ -192,8 +195,6 @@ document.getElementById("defaultOpen").click();
           customerData.forEach(function(customer) {
             customerMap[customer.id] = customer;
           });
-
-          debugger;
 
           $ticketContainer = $("#outstanding_tickets .ticket__list");
           $response.toArray().forEach(function(item) {
@@ -322,13 +323,20 @@ document.getElementById("defaultOpen").click();
     $.ajax({
       method: "PUT",
       url:'/services/sales-force-automation/order',
+      contentType: 'application/json',
       data: JSON.stringify({
         user_id: parseInt($("#new_ticket input.user_id").val()),
+        user_name: "John Doe",
         product_id: product_id,
+        product_name: "Enduro 250",
         salesperson_id: 1,
-        quantity: quantity
+        ship_addr: document.getElementById("shipaddr").value,
+        quantity: quantity,
+        price_total: 549.99,
+				date: (new Date).getTime(),
+				delivery_status: 0,
+				payment_status: false // i.e. not yet recieved
       }),
-      contentType: 'application/json'
     }).done(function() {
       orderForm.innerHTML = "Your order has been submitted. We will be in touch shortly!";
     }).fail(function(err) {
