@@ -68,12 +68,13 @@ function saveOrder(params) {
 }
 
 function newOrder(params) {
-  return saveOrder(params)
+  return recordPayment(params)
     .then((orderItem) => {
+      params.payment_status = true;
       params.orderId = orderItem.id;
-      return recordPayment(params)
+      return scheduleDelivery(params)
         .then(() => {
-          return scheduleDelivery(params);
+          return saveOrder(params);
         });
     });
 }
