@@ -264,17 +264,33 @@ document.getElementById("defaultOpen").click();
     url:'/api/list/Leads/table1?key=m1chael',
     success: function (data){
       var $response = $(data);
-      $ticketContainer = $("#leads .ticket__list");
-      $response.toArray().forEach(function(item) {
-        $ticketContainer.prepend($([
-          "<div id='lead" + item.id + "' class='ticket__container'>",
-          "  <div class='ticket__name'><span class='bold'>Name: </span>" + item.name +"</div>",
-          "  <div class='ticket__name'><span class='bold'>Phone Number: </span>" + item.phone_number+"</div>",
-          "  <div class='ticket__name'><span class='bold'>Description: </span>" + item.description+"</div>",
-          "<div class='ticket__name'><button onclick='assignLead(\"" + item.id +"\");'>Assign Lead</button></div>",
-          "</div>",
-          "<br />"
-        ].join("\n")));
+      $.ajax({
+        method: "GET",
+        url:'/api/external/hrm/salespeople',
+        success: function (sdata){
+
+          var salesPeopleData = {};
+
+          var splitLines = sdata.match(/[^\r\n]+/g);
+          splitLines.forEach(function(item) {
+            salesData = item.split(" ");
+            salesPeopleData[salesData[2]] = salesData[0] + " " + salesData[1];
+          });
+
+          $response.toArray().forEach(function(item) {
+            var $ticketContainer = $("#leads .ticket__list");
+            $ticketContainer.prepend($([
+              "<div id='lead" + item.id + "' class='ticket__container'>",
+              "  <div class='ticket__name'><span class='bold'>Name: </span>" + item.name +"</div>",
+              "  <div class='ticket__name'><span class='bold'>Phone Number: </span>" + item.phone_number+"</div>",
+              "  <div class='ticket__name'><span class='bold'>Description: </span>" + item.description+"</div>",
+              "  <div class='ticket__name'><span class='bold'>Sales Person: </span>" + salesPeopleData[item.salesperson_id]+"</div>",
+              "</div>",
+              "<br />"
+            ].join("\n")));
+          });
+
+        }
       });
     }
   });
@@ -292,7 +308,8 @@ document.getElementById("defaultOpen").click();
       data: JSON.stringify({
         name: $("#new_lead input.name").val(),
         phone_number: $("#new_lead input.phone_number").val(),
-        description: $("#new_lead textarea").val()
+        description: $("#new_lead textarea").val(),
+        salesperson_id: 1,
       }),
       contentType: 'application/json'
     });
