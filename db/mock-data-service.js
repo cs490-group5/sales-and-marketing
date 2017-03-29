@@ -172,7 +172,7 @@ function putItem(params, callback) {
       }
       callback(null, params.item);
     } else {
-      const lastId = _.maxBy(table, 'id').id;
+      const lastId = table.length > 0 ? _.maxBy(table, 'id').id : 0;
       const newItem = _.assign({id: lastId + 1}, params.item);
       table.push(newItem);
       callback(null, newItem);

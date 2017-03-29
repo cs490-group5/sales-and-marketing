@@ -104,11 +104,16 @@ section{
 	border-bottom: 1px solid #CCCCCC;
 }
 
-.placeholder{
+.ads{
 	height:200px;
 	width:100%;
-	background:#666666;
+	display: block;
 	margin-bottom:20px;
+}
+
+.ads img{
+	height:100%;
+	width:100%;
 }
 
 .star{
@@ -139,7 +144,7 @@ section{
 
 .prodname:hover{
 	text-decoration: underline;
-	color:#ffb600;	
+	color:#ffb600;
 }
 
 .prodimg{

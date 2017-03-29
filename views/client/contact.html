@@ -31,8 +31,8 @@
 			<section class="cwidth">
 				<form id="ctform">
 					<div class="form-group">
-						<span class="form-label">Name</span><br>
-						<input type="text" id="name">
+						<span class="form-label">User ID</span><br>
+						<input type="text" id="user_id">
 					</div>
 					<br>
 					<div class="form-group">
@@ -54,8 +54,8 @@
 				var ctform = document.getElementById("ctform");
 
 				var ticket = {
-					id: 1,
-					user_id: 1,
+					user_id: document.getElementById("user_id").value,
+					email: document.getElementById("email").value,
 					description: document.getElementById("message").value,
 					salesperson_id: 1
 				}

@@ -200,8 +200,9 @@ document.getElementById("defaultOpen").click();
           $response.toArray().forEach(function(item) {
             $ticketContainer.prepend($([
               "<div class='ticket__container'>",
-              "  <div class='ticket__name'><span class='bold'>User Name: </span>" + customerData[item.user_id].firstname + " " + customerData[item.user_id].lastname +"</div>",
+              "  <div class='ticket__name'><span class='bold'>User Name: </span>" + customerData[item.user_id - 1].firstname + " " + customerData[item.user_id - 1].lastname +"</div>",
               "  <div class='ticket__name'><span class='bold'>Description: </span>" + item.description+"</div>",
+              "  <div class='ticket__name'><span class='bold'>Email: </span>" + item.email+"</div>",
               "</div>",
               "<br />"
             ].join("\n")));
