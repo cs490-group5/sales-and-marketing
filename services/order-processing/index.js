@@ -41,9 +41,12 @@ function recordPayment(params) {
 
 function scheduleDelivery(params) {
   // contact SCM team to schedule a delivery
+
+  // Team 8
+  const teamEightRequestBody = _.assign({}, params, {'date': params.date.toString()})
   return superagent
     .post('https://cs490group8scm.herokuapp.com/orders?client=MCLHHQOZSXORFR532T004GKOJWZKG1OOMP1WZ4EQ3JMBW')
-    .send(params)
+    .send(teamEightRequestBody)
     .set('Authorization', 'aa9e6548c60a89d893d4992fb6232e8714d50b8787f1ecc2cf1095dbccfb')
     .set('Content-Type', 'application/json')
     .catch((err) => {
@@ -94,7 +97,7 @@ function newOrder(params) {
           params.payment_status = true;
           return saveOrder(params)
             .then((orderItem) => {
-              params.order_id = orderItem.id;
+              params.id = orderItem.id;
               return scheduleDelivery(params);
             });
         });
